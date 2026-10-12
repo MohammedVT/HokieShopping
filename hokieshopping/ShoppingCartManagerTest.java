@@ -1,6 +1,7 @@
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+package hokieshopping;
+
+
+import student.TestCase;
 
 /**
  * Tests for the ShoppingCartManager covering normal and bad-input cases[cite: 2].

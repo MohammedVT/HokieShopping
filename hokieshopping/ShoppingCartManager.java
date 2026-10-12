@@ -1,6 +1,5 @@
-/**
- * Intermediary handling logic, validation, and operations on the LinkedChain[cite: 6].
- */
+package hokieshopping;
+
 public class ShoppingCartManager {
     public static final int MAX_NAME_LENGTH = 50;
     

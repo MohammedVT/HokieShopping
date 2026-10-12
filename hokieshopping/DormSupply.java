@@ -1,12 +1,13 @@
-/**
- * Represents a recurring dorm essential[cite: 6].
- */
+package hokieshopping;
+
 public class DormSupply implements ShoppableItem {
     private String name;
     private int consumptionCycleDays;
 
-    public DormSupply(String name, int consumptionCycleDays) {
-        // TODO: Initialize name and consumption cycle
+    public DormSupply(String name, int consumptionCycleDays) 
+    {
+        this.name = name;
+        this.consumptionCycleDays = consumptionCycleDays;
     }
 
     @Override
@@ -27,10 +28,9 @@ public class DormSupply implements ShoppableItem {
     }
 
     @Override
-    public String toFileString() {
-        
-        // TODO: Implement file formatting string
-        return null;
+    public String toFileString() 
+    {
+        return this.name + "," + this.consumptionCycleDays;
     }
 
     @Override

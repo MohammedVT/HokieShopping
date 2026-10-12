@@ -1,3 +1,5 @@
+package hokieshopping;
+
 import java.util.Scanner;
 
 /**
