@@ -1,54 +1,113 @@
 package hokieshopping;
 
-
 import student.TestCase;
 
-/**
- * Tests for the ShoppingCartManager covering normal and bad-input cases[cite: 2].
- */
-public class ShoppingCartManagerTest {
-
+public class ShoppingCartManagerTest extends TestCase {
+    
     private ShoppingCartManager manager;
 
-    @BeforeEach
     public void setUp() {
+        // student.TestCase automatically runs this before each test method
         manager = new ShoppingCartManager();
     }
 
-    @Test
-    public void testAddGroceryItemNormalCase() {
-        // TODO: Call addGroceryItem("Apples", "Produce")[cite: 6]
-        // TODO: Assert size increases to 1 and method returns true[cite: 6]
+    // --- addGroceryItem Tests ---
+    
+    public void testAddGroceryItemNormal() {
+        assertTrue(manager.addGroceryItem("Apples", "Produce"));
+        assertEquals(1, manager.size());
+        assertFalse(manager.isEmpty());
+    }
+
+    public void testAddGroceryItemBadInput() {
+        assertFalse(manager.addGroceryItem(null, "Produce"));
+        assertFalse(manager.addGroceryItem("", "Produce"));
+        assertFalse(manager.addGroceryItem("Apples", null));
+        assertEquals(0, manager.size());
+    }
+
+    public void testAddGroceryItemTruncation() {
+        String longName = "A".repeat(60); // 60 character string
+        assertTrue(manager.addGroceryItem(longName, "Produce"));
         
+        String expectedTruncatedName = "A".repeat(50);
+        assertTrue(manager.containsGroceryItem(expectedTruncatedName, "Produce"));
     }
 
-    @Test
-    public void testAddGroceryItemBadInputBlank() {
-        // TODO: Call addGroceryItem(" ", "Produce")[cite: 6]
-        // TODO: Assert returns false and size remains 0[cite: 6]
+    // --- addDormSupply Tests ---
+
+    public void testAddDormSupplyNormal() {
+        assertTrue(manager.addDormSupply("Paper Towels", 30));
+        assertEquals(1, manager.size());
     }
 
-    @Test
-    public void testAddGroceryItemBadInputTooLong() {
-        // TODO: Call addGroceryItem with a 65-character string[cite: 6]
-        // TODO: Assert item is added, returns true, and name is truncated to 50 chars[cite: 6]
+    public void testAddDormSupplyBadInput() {
+        assertFalse(manager.addDormSupply(null, 30));
+        assertFalse(manager.addDormSupply("Paper Towels", 0));
+        assertFalse(manager.addDormSupply("Paper Towels", -5));
     }
 
-    @Test
-    public void testAddDormSupplyNormalCase() {
-        // TODO: Call addDormSupply("Paper Towels", 14)[cite: 6]
-        // TODO: Assert item is added and returns true[cite: 6]
+    // --- removeGroceryItem Tests ---
+
+    public void testRemoveGroceryItemNormal() {
+        manager.addGroceryItem("Apples", "Produce");
+        assertTrue(manager.removeGroceryItem("Apples", "Produce"));
+        assertEquals(0, manager.size());
     }
 
-    @Test
-    public void testAddDormSupplyBadInputNegativeCycle() {
-        // TODO: Call addDormSupply("Paper Towels", -5)[cite: 6]
-        // TODO: Assert returns false and chain size remains 0[cite: 6]
+    public void testRemoveGroceryItemBadInput() {
+        manager.addGroceryItem("Apples", "Produce");
+        assertFalse(manager.removeGroceryItem("Bananas", "Produce"));
+        assertFalse(manager.removeGroceryItem("Apples", "Snacks"));
     }
 
-    @Test
-    public void testRemoveGroceryItemEmptyChain() {
-        // TODO: Attempt to remove an item from an empty chain[cite: 6]
-        // TODO: Assert it returns false and does not crash[cite: 2, 6]
+    public void testRemoveFromEmptyCart() {
+        assertFalse(manager.removeGroceryItem("Apples", "Produce"));
+    }
+
+    // --- removeDormSupply Tests ---
+
+    public void testRemoveDormSupplyNormal() {
+        manager.addDormSupply("Soap", 60);
+        assertTrue(manager.removeDormSupply("Soap", 60));
+        assertEquals(0, manager.size());
+    }
+
+    public void testRemoveDormSupplyBadInput() {
+        manager.addDormSupply("Soap", 60);
+        assertFalse(manager.removeDormSupply("Soap", 30));
+    }
+
+    // --- containsGroceryItem Tests ---
+
+    public void testContainsGroceryItem() {
+        manager.addGroceryItem("Milk", "Dairy");
+        assertTrue(manager.containsGroceryItem("Milk", "Dairy"));
+        assertFalse(manager.containsGroceryItem("Eggs", "Dairy"));
+    }
+
+    // --- size and isEmpty Tests ---
+
+    public void testSizeAndIsEmpty() {
+        assertTrue(manager.isEmpty());
+        assertEquals(0, manager.size());
+
+        manager.addGroceryItem("Apples", "Produce");
+        assertFalse(manager.isEmpty());
+        assertEquals(1, manager.size());
+
+        manager.addDormSupply("Soap", 60);
+        assertEquals(2, manager.size());
+    }
+
+    // --- clearCart Tests ---
+
+    public void testClearCart() {
+        manager.addGroceryItem("Apples", "Produce");
+        manager.addDormSupply("Soap", 60);
+        manager.clearCart();
+        
+        assertTrue(manager.isEmpty());
+        assertEquals(0, manager.size());
     }
 }
