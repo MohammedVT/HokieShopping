@@ -180,6 +180,117 @@ public class HokieShoppingUI
     }
     
     /**
+     * takes grocery information and sends it to manager.
+     * 
+     * Disclamer: this is helper method suggested by LLM to reslove the issue 
+     * we have with having to call this method for start class
+     */
+    private void addGroceryItem()
+    {
+        System.out.print("Item name: ");
+        String name = scanner.nextLine();
+
+        System.out.print("Category: ");
+        String category = scanner.nextLine();
+
+        if (manager.addGroceryItem(name, category))
+        {
+            System.out.println("Item added.");
+        }
+        else
+        {
+            System.out.println("Invalid item.");
+        }
+    }
+    
+    /**
+     * takes dorm supply info and sends it to manager.
+     * 
+     * Disclamer: this is helper method suggested by LLM to reslove the issue 
+     * we have with having to call this method for start class.
+     * 
+     */
+    private void addDormSupply()
+    {
+        System.out.print("Supply name: ");
+        String name = scanner.nextLine();
+        
+        System.out.print("Consumption cycle in days: ");
+        
+        try
+        {
+            int days = Integer.parseInt(scanner.nextLine());
+
+            if (manager.addDormSupply(name, days))
+            {
+                System.out.println("Supply added.");
+            }
+            else
+            {
+                System.out.println("Invalid supply.");
+            }
+        }
+        catch (NumberFormatException e)
+        {
+            System.out.println("Please enter a valid number.");
+        }
+    }
+    
+    /**
+     * takes grocery info and asks manager to remove it.
+     * 
+     * Disclamer: this is helper method suggested by LLM to reslove the issue 
+     * we have with having to call this method for start class.
+     */
+    private void removeGroceryItem()
+    {
+        System.out.print("Item name: ");
+        String name = scanner.nextLine();
+
+        System.out.print("Category: ");
+        String category = scanner.nextLine();
+
+        if (manager.removeGroceryItem(name, category))
+        {
+            System.out.println("Item removed.");
+        }
+        else
+        {
+            System.out.println("Item not found.");
+        }
+    }
+    
+    /**
+     * takes dorm supply info and asks the manager to remove it.
+     * 
+     */
+    private void removeDormSupply()
+    {
+        System.out.print("Supply name: ");
+        String name = scanner.nextLine();
+
+        System.out.print("Consumption cycle in days: ");
+        
+        try
+        {
+            int days = Integer.parseInt(scanner.nextLine());
+
+            if (manager.removeDormSupply(name, days))
+            {
+                System.out.println("Supply removed.");
+            }
+            else
+            {
+                System.out.println("Supply not found.");
+            }
+        }
+        catch (NumberFormatException e)
+        {
+            System.out.println("Please enter a valid number.");
+        }
+    }
+    
+    /**
      * this is main method that starts the program.
      *
      * @param args command-line arguments
