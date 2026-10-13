@@ -4,7 +4,8 @@ public class ShoppingCartManager {
     public static final int MAX_NAME_LENGTH = 50;
     
     private LinkedChain<ShoppableItem> groceryCart;
-    // private HokieShoppingStorage storage; // TODO: Stretch goal[cite: 6]
+    // private HokieShoppingStorage storage; 
+    // TODO: Stretch goal[cite: 6]
 
     public ShoppingCartManager() {
         // TODO: Instantiate the LinkedChain[cite: 6]

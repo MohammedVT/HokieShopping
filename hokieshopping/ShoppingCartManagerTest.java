@@ -19,6 +19,7 @@ public class ShoppingCartManagerTest {
     public void testAddGroceryItemNormalCase() {
         // TODO: Call addGroceryItem("Apples", "Produce")[cite: 6]
         // TODO: Assert size increases to 1 and method returns true[cite: 6]
+        
     }
 
     @Test
