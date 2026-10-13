@@ -1,6 +1,6 @@
 package hokieshopping;
 
-import java.util.Scanner;
+import java.util.*;
 
 /**
  * Handles all console input/output[cite: 6].
@@ -10,8 +10,11 @@ public class HokieShoppingUI {
     private Scanner scanner;
     private ShoppingCartManager manager;
 
-    public HokieShoppingUI(ShoppingCartManager manager) {
-        // TODO: Initialize scanner and manager[cite: 6]
+    public HokieShoppingUI(ShoppingCartManager manager)
+    {
+        Scanner scanner = new Scanner();
+        
+        
     }
 
     public void start() {
