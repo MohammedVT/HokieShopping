@@ -3,12 +3,10 @@ package hokieshopping;
 import java.util.*;
 
 /**
- * Handles all console input/output[cite: 6].
+ * Handles all console input/output.
  */
 public class HokieShoppingUI
 {
-    
-
     private Scanner scanner;
     private ShoppingCartManager manager;
     
@@ -93,6 +91,78 @@ public class HokieShoppingUI
         );
     }
     
+    // --- Helper Methods that Prompt the User ---
+
+    private void addGroceryItem() 
+    {
+        System.out.print("Enter grocery name: ");
+        String name = scanner.nextLine();
+        
+        System.out.print("Enter category (e.g., Produce, Snacks): ");
+        String category = scanner.nextLine();
+        
+        // Passes the user's input to your ShoppingCartManager
+        if (manager.addGroceryItem(name, category)) {
+            System.out.println(name + " added successfully.");
+        } else {
+            System.out.println("Failed to add item. Check that inputs are not blank.");
+        }
+    }
+
+    private void addDormSupply() 
+    {
+        System.out.print("Enter dorm supply name: ");
+        String name = scanner.nextLine();
+        
+        System.out.print("Enter consumption cycle (in days): ");
+        try {
+            int days = Integer.parseInt(scanner.nextLine());
+            // Passes the user's input to your ShoppingCartManager
+            if (manager.addDormSupply(name, days)) {
+                System.out.println(name + " added successfully.");
+            } else {
+                System.out.println("Failed to add item. Ensure cycle is greater than 0 and name is not blank.");
+            }
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid input. Please enter a valid number for days.");
+        }
+    }
+
+    private void removeGroceryItem() 
+    {
+        System.out.print("Enter grocery name to remove: ");
+        String name = scanner.nextLine();
+        
+        System.out.print("Enter category of the item: ");
+        String category = scanner.nextLine();
+        
+        // Passes the user's input to your ShoppingCartManager
+        if (manager.removeGroceryItem(name, category)) {
+            System.out.println(name + " removed successfully.");
+        } else {
+            System.out.println(name + " not found in the cart.");
+        }
+    }
+
+    private void removeDormSupply() 
+    {
+        System.out.print("Enter dorm supply name to remove: ");
+        String name = scanner.nextLine();
+        
+        System.out.print("Enter consumption cycle (in days) of the item: ");
+        try {
+            int days = Integer.parseInt(scanner.nextLine());
+            // Passes the user's input to your ShoppingCartManager
+            if (manager.removeDormSupply(name, days)) {
+                System.out.println(name + " removed successfully.");
+            } else {
+                System.out.println(name + " not found in the cart.");
+            }
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid input. Please enter a valid number for days.");
+        }
+    }
+
     /**
      * this displays information about the shopping list.
      */
