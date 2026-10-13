@@ -22,10 +22,30 @@ public class DormSupply implements ShoppableItem {
     }
 
     @Override
-    public boolean equals(Object obj) {
-        // TODO: Implement equivalence matching[cite: 6]
+    public boolean equals(Object obj) 
+    {
+        // TODO: Implement case-insensitive matching[cite: 6]
+        if (this == obj)
+        {
+            return true;
+        }
+        else if (obj != null)
+        {
+            if (this.getClass() == obj.getClass())
+            {
+                DormSupply otherItem = (DormSupply) obj;
+                boolean namesEqual = this.name.equalsIgnoreCase(otherItem.getName());
+                boolean consDays = this.consumptionCycleDays == otherItem.getConsumptionCycleDays();
+                
+                if (namesEqual && consDays)
+                {
+                    return true;
+                }
+            }
+        }
         return false;
     }
+
 
     @Override
     public String toFileString() 
