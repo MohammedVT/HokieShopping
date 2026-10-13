@@ -7,20 +7,46 @@ public class ShoppingCartManager {
     // private HokieShoppingStorage storage; 
     // TODO: Stretch goal[cite: 6]
 
-    public ShoppingCartManager() {
+    public ShoppingCartManager() 
+    {
+        groceryCart = new LinkedChain<>();
         // TODO: Instantiate the LinkedChain[cite: 6]
+        
         
     }
 
-    public boolean addGroceryItem(String name, String category) {
+    public boolean addGroceryItem(String name, String category) 
+    {
         // TODO: Validate input (reject null/blank, truncate >50 chars)[cite: 6]
+        
+        if (name != null && category != null && !name.isBlank())
+        {
+            if (name.length() > MAX_NAME_LENGTH)
+            {
+                name = name.substring(0, MAX_NAME_LENGTH);
+            }
+            
+            GroceryItem item = new GroceryItem(name, category);
+            groceryCart.add(item);
+            return true;
+            
+        }
         // TODO: Create GroceryItem and add to chain[cite: 6]
         return false;
     }
 
     public boolean addDormSupply(String name, int consumptionCycleDays) {
-        // TODO: Validate inputs (reject null/blank, positive int for cycle)[cite: 6]
-        // TODO: Create DormSupply and add to chain[cite: 6]
+        if (name != null && consumptionCycleDays > 0 && !name.isBlank())
+        {
+            if (name.length() > MAX_NAME_LENGTH)
+            {
+                name = name.substring(0, MAX_NAME_LENGTH);
+            }
+
+            DormSupply item = new DormSupply(name, consumptionCycleDays);
+            groceryCart.add(item);
+            return true;
+        }
         return false;
     }
 
@@ -39,17 +65,17 @@ public class ShoppingCartManager {
         return false;
     }
 
-    public void clearCart() {
-        // TODO: Implement clear functionality[cite: 6]
+    public int size() 
+    {
+        return groceryCart.size();
     }
 
-    public int size() {
-        // TODO: Return chain size[cite: 6]
-        return 0;
+    public boolean isEmpty() 
+    {
+        return groceryCart.isEmpty();
     }
 
-    public boolean isEmpty() {
-        // TODO: Return if chain is empty[cite: 6]
-        return false;
-    }
-}
+    public void clearCart() 
+    {
+        groceryCart.clear();
+    }}
