@@ -55,7 +55,8 @@ New tests are needed to cover the `HokieShoppingStorage` integration. Specifical
 
 **Who does what?**
 
-* **Michael Carnes:** Owns all remaining MVP tasks, storage integration, and finalizing the test suite.
+* **Michael Carnes (mcodez72):** Wrote LinkedChain wrapper ShoppingCartManager, dormsupply, groceryitem, and jUnit test for SCM
+* **Mohammed Almahyawi (mohammeda24)**: Wrote HokieShoppingUI
 
 ## Attribution
 
