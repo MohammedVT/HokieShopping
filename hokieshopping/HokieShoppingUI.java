@@ -6,6 +6,7 @@ import java.util.Scanner;
  * Handles all console input/output[cite: 6].
  */
 public class HokieShoppingUI {
+    
     private Scanner scanner;
     private ShoppingCartManager manager;
 
