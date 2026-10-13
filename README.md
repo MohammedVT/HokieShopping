@@ -72,6 +72,8 @@ New tests are needed to cover the `HokieShoppingStorage` integration. Specifical
 
 Generative AI (Google Gemini) was utilized as a thought partner to understand Object-Oriented memory principles (passing dummy objects to match via `.equals()`), evaluate Big-O time complexity for linear traversals, and format the JUnit test suite to align with the `student.TestCase` architecture. All generated test cases were reviewed to ensure they accurately targeted the application's actual validation logic.
 
+Additionally, the helper methods in HokieShoppingUI were suggested by LLM (ChatGPT) to resolve an issue we had with having to call these method for start() method, but those methods weren't accessible from ShoppingCartManager. This solution was reviewed and approved by Mohammed Almahyawi (mohammeda24). 
+
 
 TO DO
 - remove redundant qeustions when removing item
