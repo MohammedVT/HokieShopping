@@ -77,4 +77,4 @@ TO DO
 - remove redundant qeustions when removing item
 - display prints items and info in cart, not just amount of items
 - implement stetch goals
-- 
+- fix remove method for dormsupply, only works for groceryitem
