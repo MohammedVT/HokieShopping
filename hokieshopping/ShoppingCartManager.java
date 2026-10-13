@@ -50,19 +50,22 @@ public class ShoppingCartManager {
         return false;
     }
 
-    public boolean removeGroceryItem(String name) {
-        // TODO: Implement removal[cite: 6]
-        return false;
+    public boolean removeGroceryItem(String name, String category) 
+    {
+        GroceryItem item = new GroceryItem(name, category);
+        return groceryCart.remove(item);
     }
 
-    public boolean removeDormSupply(String name) {
-        // TODO: Implement removal[cite: 6]
-        return false;
+    public boolean removeDormSupply(String name, int consumptionCycleDays) 
+    {
+        DormSupply supply = new DormSupply(name, consumptionCycleDays);
+        return groceryCart.remove(supply);
     }
     
-    public boolean containsItem(ShoppableItem item) {
-        // TODO: Implement contains check[cite: 6]
-        return false;
+    public boolean containsGroceryItem(String name, String category) 
+    {
+        GroceryItem item = new GroceryItem(name, category);
+        return groceryCart.contains(item);
     }
 
     public int size() 
