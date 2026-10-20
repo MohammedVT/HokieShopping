@@ -18,7 +18,7 @@ To compile and run the application and test suite:
 ## Reflection
 
 **What changed from your specification?**
-
+In the original specification, validation for blank names and negative numbers was planned to be handled inside the GroceryItem and DormSupply constructors. However, during implementation, I moved this validation logic into the ShoppingCartManager class (truncating strings over 50 characters and rejecting null/blank inputs). This change was made to prevent invalid objects from ever being instantiated and to centralize the error handling before interacting with the LinkedChain.
 
 
 **What changed in the LinkedChain?**
