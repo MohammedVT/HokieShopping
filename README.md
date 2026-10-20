@@ -59,14 +59,15 @@ New tests are needed to cover the `HokieShoppingStorage` integration. Specifical
 * **Mohammed Almahyawi (mohammeda24)**: Wrote HokieShoppingUI
 
 ## Attribution
-
 | File | Author / Owner | Contribution Details & GenAI Usage |
 | --- | --- | --- |
 | `ShoppingCartManager.java` | Michael Carnes | Wrote the class structure and validation logic. Used GenAI to conceptualize the "dummy object" pattern for the `remove` and `contains` methods. |
 | `DormSupply.java` | Michael Carnes | Wrote class. Authored custom `equals()` method for case-insensitive state matching. |
 | `GroceryItem.java` | Michael Carnes | Wrote class. Authored custom `equals()` method for state matching. |
-| `ShoppingCartManagerTest.java` | Michael Carnes | Wrote test cases following the spec plan. Used GenAI to assist in refactoring the test suite from JUnit 5 to the `student.TestCase` framework and to generate edge-case tests (e.g., empty collection removals).
-| `HokieShoppingUI` | Mohammed Almahyawi | Wrote the UI class |
+| `ShoppingCartManagerTest.java` | Michael Carnes | Wrote test cases following the spec plan. Used GenAI to assist in refactoring the test suite from JUnit 5 to the `student.TestCase` framework and to generate edge-case tests (e.g., empty collection removals). |
+| `GroceryItemTest.java` | Michael Carnes | Wrote test cases covering all public methods. Used GenAI to generate the initial test suite structure and edge cases. |
+| `DormSupplyTest.java` | Michael Carnes | Wrote test cases covering all public methods. Used GenAI to generate the initial test suite structure and edge cases. |
+| `HokieShoppingUI.java` | Mohammed Almahyawi | Wrote the UI class |
 
 **GenAI Note:**
 
