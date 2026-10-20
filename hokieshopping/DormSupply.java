@@ -17,11 +17,10 @@ public class DormSupply implements ShoppableItem {
     }
 
     public int getConsumptionCycleDays() {
-        // TODO: Implement
-        return 0;
+        return consumptionCycleDays;
     }
 
-    @Override
+    /*@Override
     public boolean equals(Object obj) 
     {
         // TODO: Implement case-insensitive matching[cite: 6]
@@ -44,6 +43,17 @@ public class DormSupply implements ShoppableItem {
             }
         }
         return false;
+    }*/
+    @Override
+    public boolean equals(Object obj) 
+    {
+        if (this == obj) return true;
+        if (obj != null && this.getClass() == obj.getClass())
+        {
+            DormSupply otherItem = (DormSupply) obj;
+            return this.name.equalsIgnoreCase(otherItem.getName()); // Only check name!
+        }
+        return false;
     }
 
 
@@ -55,7 +65,6 @@ public class DormSupply implements ShoppableItem {
 
     @Override
     public String toString() {
-        // TODO: Implement string representation
-        return null;
+        return name + " (" + consumptionCycleDays + " days)";
     }
 }

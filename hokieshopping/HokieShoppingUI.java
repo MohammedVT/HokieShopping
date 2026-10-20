@@ -5,79 +5,45 @@ import java.util.*;
 /**
  * Handles all console input/output.
  */
-public class HokieShoppingUI
-{
+public class HokieShoppingUI {
     private Scanner scanner;
     private ShoppingCartManager manager;
     
-    /**
-     * constructor method that creats the user interface.
-     *
-     * @param manager the ShoppingCartManager used in the program
-     */
-    public HokieShoppingUI(ShoppingCartManager manager)
-    {
+    public HokieShoppingUI(ShoppingCartManager manager) {
         this.manager = manager;
         this.scanner = new Scanner(System.in);
     }
     
-    /**
-     * Runs the main program loop.
-     */
-    public void start()
-    {
+    public void start() {
         boolean running = true;
-        
-        while (running)
-        {
+        while (running) {
             displayMenu();
-            
             String choice = scanner.nextLine();
             
-            if (choice.equals("1"))
-            {
+            if (choice.equals("1")) {
                 addGroceryItem();
-            }
-            else if (choice.equals("2"))
-            {
+            } else if (choice.equals("2")) {
                 addDormSupply();
-            }
-            else if (choice.equals("3"))
-            {
+            } else if (choice.equals("3")) {
                 removeGroceryItem();
-            }
-            else if (choice.equals("4"))
-            {
+            } else if (choice.equals("4")) {
                 removeDormSupply();
-            }
-            else if (choice.equals("5"))
-            {
+            } else if (choice.equals("5")) {
                 displayItems();
-            }
-            else if (choice.equals("6"))
-            {
+            } else if (choice.equals("6")) {
                 manager.clearCart();
                 System.out.println("Shopping list cleared.");
-            }
-            else if (choice.equals("7"))
-            {
+            } else if (choice.equals("7")) {
                 running = false;
                 System.out.println("Goodbye!");
-            }
-            else
-            {
+            } else {
                 System.out.println("Invalid option. Please try again.");
             }
         }
-
         scanner.close();
     }
     
-    /**
-     * Displays the main menu.
-     */
-    public void displayMenu()
-    {
+    public void displayMenu() {
         System.out.println(
             "\n=== HokieShopping ===\n"
             + "1. Add grocery item\n"
@@ -90,18 +56,13 @@ public class HokieShoppingUI
             + "Choose an option: "
         );
     }
-    
-    // --- Helper Methods that Prompt the User ---
 
-    private void addGroceryItem() 
-    {
+    private void addGroceryItem() {
         System.out.print("Enter grocery name: ");
         String name = scanner.nextLine();
-        
         System.out.print("Enter category (e.g., Produce, Snacks): ");
         String category = scanner.nextLine();
         
-        // Passes the user's input to your ShoppingCartManager
         if (manager.addGroceryItem(name, category)) {
             System.out.println(name + " added successfully.");
         } else {
@@ -109,15 +70,12 @@ public class HokieShoppingUI
         }
     }
 
-    private void addDormSupply() 
-    {
+    private void addDormSupply() {
         System.out.print("Enter dorm supply name: ");
         String name = scanner.nextLine();
-        
         System.out.print("Enter consumption cycle (in days): ");
         try {
             int days = Integer.parseInt(scanner.nextLine());
-            // Passes the user's input to your ShoppingCartManager
             if (manager.addDormSupply(name, days)) {
                 System.out.println(name + " added successfully.");
             } else {
@@ -133,11 +91,7 @@ public class HokieShoppingUI
         System.out.print("Enter grocery name to remove: ");
         String name = scanner.nextLine();
         
-        System.out.print("Enter category of the item: ");
-        String category = scanner.nextLine();
-        
-        // Passes the user's input to your ShoppingCartManager
-        if (manager.removeGroceryItem(name, category)) {
+        if (manager.removeGroceryItem(name)) {
             System.out.println(name + " removed successfully.");
         } else {
             System.out.println(name + " not found in the cart.");
@@ -149,157 +103,25 @@ public class HokieShoppingUI
         System.out.print("Enter dorm supply name to remove: ");
         String name = scanner.nextLine();
         
-        System.out.print("Enter consumption cycle (in days) of the item: ");
-        try {
-            int days = Integer.parseInt(scanner.nextLine());
-            // Passes the user's input to your ShoppingCartManager
-            if (manager.removeDormSupply(name, days)) {
-                System.out.println(name + " removed successfully.");
-            } else {
-                System.out.println(name + " not found in the cart.");
-            }
-        } catch (NumberFormatException e) {
-            System.out.println("Invalid input. Please enter a valid number for days.");
+        if (manager.removeDormSupply(name)) {
+            System.out.println(name + " removed successfully.");
+        } else {
+            System.out.println(name + " not found in the cart.");
         }
     }
-
-    /**
-     * this displays information about the shopping list.
-     */
-    public void displayItems()
-    {
-        if (manager.isEmpty())
-        {
+    
+    public void displayItems() {
+        if (manager.isEmpty()) {
             System.out.println("Shopping list is empty.");
-        }
-        else
-        {
-            System.out.println(
-                "Items currently in shopping list: " + manager.size());
+        } else {
+            System.out.println("Items currently in shopping list: " + manager.size());
+            System.out.println(manager.toString());
         }
     }
-    
-    /**
-     * takes grocery information and sends it to manager.
-     * 
-     * Disclamer: this is helper method suggested by LLM to reslove the issue 
-     * we have with having to call this method for start class
-     */
-    private void addGroceryItem()
-    {
-        System.out.print("Item name: ");
-        String name = scanner.nextLine();
 
-        System.out.print("Category: ");
-        String category = scanner.nextLine();
-
-        if (manager.addGroceryItem(name, category))
-        {
-            System.out.println("Item added.");
-        }
-        else
-        {
-            System.out.println("Invalid item.");
-        }
-    }
-    
-    /**
-     * takes dorm supply info and sends it to manager.
-     * 
-     * Disclamer: this is helper method suggested by LLM to reslove the issue 
-     * we have with having to call this method for start class.
-     * 
-     */
-    private void addDormSupply()
-    {
-        System.out.print("Supply name: ");
-        String name = scanner.nextLine();
-        
-        System.out.print("Consumption cycle in days: ");
-        
-        try
-        {
-            int days = Integer.parseInt(scanner.nextLine());
-
-            if (manager.addDormSupply(name, days))
-            {
-                System.out.println("Supply added.");
-            }
-            else
-            {
-                System.out.println("Invalid supply.");
-            }
-        }
-        catch (NumberFormatException e)
-        {
-            System.out.println("Please enter a valid number.");
-        }
-    }
-    
-    /**
-     * takes grocery info and asks manager to remove it.
-     * 
-     * Disclamer: this is helper method suggested by LLM to reslove the issue 
-     * we have with having to call this method for start class.
-     */
-    private void removeGroceryItem()
-    {
-        System.out.print("Item name: ");
-        String name = scanner.nextLine();
-
-        System.out.print("Category: ");
-        String category = scanner.nextLine();
-
-        if (manager.removeGroceryItem(name, category))
-        {
-            System.out.println("Item removed.");
-        }
-        else
-        {
-            System.out.println("Item not found.");
-        }
-    }
-    
-    /**
-     * takes dorm supply info and asks the manager to remove it.
-     * 
-     */
-    private void removeDormSupply()
-    {
-        System.out.print("Supply name: ");
-        String name = scanner.nextLine();
-
-        System.out.print("Consumption cycle in days: ");
-        
-        try
-        {
-            int days = Integer.parseInt(scanner.nextLine());
-
-            if (manager.removeDormSupply(name, days))
-            {
-                System.out.println("Supply removed.");
-            }
-            else
-            {
-                System.out.println("Supply not found.");
-            }
-        }
-        catch (NumberFormatException e)
-        {
-            System.out.println("Please enter a valid number.");
-        }
-    }
-    
-    /**
-     * this is main method that starts the program.
-     *
-     * @param args command-line arguments
-     */
-    public static void main(String[] args)
-    {
+    public static void main(String[] args) {
         ShoppingCartManager manager = new ShoppingCartManager();
         HokieShoppingUI ui = new HokieShoppingUI(manager);
-        
         ui.start();
     }
 }

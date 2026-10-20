@@ -50,16 +50,16 @@ public class ShoppingCartManager {
         return false;
     }
 
-    public boolean removeGroceryItem(String name, String category) 
+    public boolean removeGroceryItem(String name) 
     {
-        GroceryItem item = new GroceryItem(name, category);
-        return groceryCart.remove(item);
+        // Passes a dummy category, equals() will ignore it!
+        return groceryCart.remove(new GroceryItem(name, ""));
     }
 
-    public boolean removeDormSupply(String name, int consumptionCycleDays) 
+    public boolean removeDormSupply(String name) 
     {
-        DormSupply supply = new DormSupply(name, consumptionCycleDays);
-        return groceryCart.remove(supply);
+        // Passes a dummy day, equals() will ignore it!
+        return groceryCart.remove(new DormSupply(name, 0));
     }
     
     public boolean containsGroceryItem(String name, String category) 
@@ -81,4 +81,10 @@ public class ShoppingCartManager {
     public void clearCart() 
     {
         groceryCart.clear();
-    }}
+    }
+    @Override
+    public String toString() 
+    {
+        return groceryCart.toString();
+    }
+    }

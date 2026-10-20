@@ -51,31 +51,34 @@ public class ShoppingCartManagerTest extends TestCase {
 
     public void testRemoveGroceryItemNormal() {
         manager.addGroceryItem("Apples", "Produce");
-        assertTrue(manager.removeGroceryItem("Apples", "Produce"));
+        assertTrue(manager.removeGroceryItem("Apples"));
         assertEquals(0, manager.size());
     }
 
     public void testRemoveGroceryItemBadInput() {
         manager.addGroceryItem("Apples", "Produce");
-        assertFalse(manager.removeGroceryItem("Bananas", "Produce"));
-        assertFalse(manager.removeGroceryItem("Apples", "Snacks"));
+        assertFalse(manager.removeGroceryItem("Bananas"));
+        assertFalse(manager.removeGroceryItem(""));
+        assertFalse(manager.removeGroceryItem(null));
     }
 
     public void testRemoveFromEmptyCart() {
-        assertFalse(manager.removeGroceryItem("Apples", "Produce"));
+        assertFalse(manager.removeGroceryItem("Apples"));
     }
 
     // --- removeDormSupply Tests ---
 
     public void testRemoveDormSupplyNormal() {
         manager.addDormSupply("Soap", 60);
-        assertTrue(manager.removeDormSupply("Soap", 60));
+        assertTrue(manager.removeDormSupply("Soap"));
         assertEquals(0, manager.size());
     }
 
     public void testRemoveDormSupplyBadInput() {
         manager.addDormSupply("Soap", 60);
-        assertFalse(manager.removeDormSupply("Soap", 30));
+        assertFalse(manager.removeDormSupply("Towels"));
+        assertFalse(manager.removeDormSupply(""));
+        assertFalse(manager.removeDormSupply(null));
     }
 
     // --- containsGroceryItem Tests ---

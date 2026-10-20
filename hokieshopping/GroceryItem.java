@@ -21,7 +21,7 @@ public class GroceryItem implements ShoppableItem {
         return category;
     }
 
-    @Override
+    /*@Override
     public boolean equals(Object obj) 
     {
         // TODO: Implement case-insensitive matching[cite: 6]
@@ -44,6 +44,17 @@ public class GroceryItem implements ShoppableItem {
             }
         }
         return false;
+    }*/
+    @Override
+    public boolean equals(Object obj) 
+    {
+        if (this == obj) return true;
+        if (obj != null && this.getClass() == obj.getClass())
+        {
+            GroceryItem otherItem = (GroceryItem) obj;
+            return this.name.equalsIgnoreCase(otherItem.getName()); // Only check name!
+        }
+        return false;
     }
 
     @Override
@@ -54,7 +65,5 @@ public class GroceryItem implements ShoppableItem {
     
     @Override
     public String toString() {
-        // TODO: Implement string representation
-        return null;
-    }
-}
+        return name + " (" + category + ")";
+    }}
